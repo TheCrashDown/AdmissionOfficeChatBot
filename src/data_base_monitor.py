@@ -14,7 +14,7 @@ class DataBaseMonitor:
                        "FIRST_NAME TEXT NOT NULL, "
                        "SURNAME TEXT NOT NULL, "
                        "SUMMARY INTEGER DEFAULT 0, "
-                       "CERTIFICATE BOOLEAN DEFAULT False"
+                       "CERTIFICATE BOOLEAN DEFAULT False, "
                        "PHYSTECH_SCHOOL INTEGER DEFAULT -1, "
                        "DIRECTION TEXT "
                        ");")
