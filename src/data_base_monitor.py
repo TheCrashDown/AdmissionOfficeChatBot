@@ -21,7 +21,7 @@ class DataBaseMonitor:
 
         cursor.close()
 
-    def get_number_of_people_under(self, chat_id):
+    def get_number_of_people_above(self, chat_id):
 
         with self.data_base.cursor() as cursor:
 
@@ -45,7 +45,7 @@ class DataBaseMonitor:
                 return 5555
 
 
-    def get_number_of_people_under_with_certificate(self, chat_id):
+    def get_number_of_people_above_with_certificate(self, chat_id):
 
         with self.data_base.cursor() as cursor:
 

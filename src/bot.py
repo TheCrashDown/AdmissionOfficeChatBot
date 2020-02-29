@@ -58,7 +58,21 @@ def test_message(message):
     bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
 
 def monitoring(chat_id):
-    bot.send_message(chat_id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы', reply_markup=keybord)
+    bot.send_message(chat_id, 'Текущее состояние таблицы таково:', reply_markup=keybord)
+    # print some ladder
+
+    number_of_people = data_base_monitor.get_number_of_people()
+    above = data_base_monitor.get_number_of_people_above(chat_id)
+    above_ = data_base_monitor.get_number_of_people_above_with_certificate(chat_id)
+
+
+    stats = "У вас баллов: {0}\n \
+             Количество людей выше вас: {1}\n \
+             Количество людей выше вас, подавших оригинал аттестата: {2}\n \
+             Всего людей, подавших документы: {3}\n \
+             Проходной балл в прошлом году: 262".format(0, above, above_, number_of_people)
+
+    bot.send_message(message.chat.id, stats)
 
 @bot.message_handler(commands=['monitoring'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'monitoring')
