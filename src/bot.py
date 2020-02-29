@@ -57,18 +57,24 @@ def faq_question(message):
 def test_message(message):
     bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
 
+def monitoring(chat_id):
+    bot.send_message(chat_id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
 
 @bot.message_handler(commands=['monitoring'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'monitoring')
 def monitoring_message(message):
-    print("---------------------monitor start")
-    if data_base_telegram.get_email(message.chat.id) == None:
-        bot.send_message(message.chat.id, "Чтобы увидеть свое место в рейтинге, укажите свой e-mail, чтобы мы поняли кто вы")
-        email = get_message()
-        print("---------------------")
-        print(email)
-        data_base_telegram.set_email(message.chat.id, email)
-    bot.send_message(message.chat.id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
+    if data_base_telegram.get_email(message.chat.id) is None:
+        data_base_telegram.set_status(message.chat.id, "SEND_MAIL")
+        bot.send_message(message.chat.id, "Чтобы увидеть свое место в рейтинге, укажите свой e-mail", reply_markup=telebot.types.ReplyKeyboardRemove())
+        return
+    monitoring(message.chat.id)
+
+@bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "SEND_MAIL")
+def set_mail(message):
+    data_base_telegram.set_email(message.chat.id, message.text)
+    data_base_telegram.set_status(message.chat.id, "")
+    monitoring(message.chat.id)
+
 
 
 @bot.message_handler()
