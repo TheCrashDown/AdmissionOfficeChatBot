@@ -21,23 +21,57 @@ class DataBaseMonitor:
 
         cursor.close()
 
-    def get_position(self, chat_id):
-        cursor = self.data_base.cursor()
+    def get_number_of_people_under(self, chat_id):
 
-        cursor.execute("Select * "
-                       "from USR "
-                       "where CHATID = %(user_id)s",
-                       {'user_id': chat_id})
+        with self.data_base.cursor() as cursor:
 
-        email = cursor.fetchone()
+            cursor.execute("SELECT * "
+                           "FROM ladder inner join abitu "
+                           "on abitu.email = ladder.email "
+                           "WHERE user_id = %(user_id)s);",
+                           {'user_id': chat_id})
 
-        cursor.execute("Select * "
-                       "from LADDER "
-                       "where EMAIL = %(user_id)s",
-                       {'user_id': email})
+            if cursor.rowcount:
+                cursor.execute("SELECT Count(*) "
+                               "FROM ladder "
+                               "WHERE summary > "
+                               "(SELECT summary "
+                               "FROM ladder inner join abitu "
+                               "on abitu.email = ladder.email "
+                               "WHERE user_id = %(user_id)s);",
+                               {'user_id': chat_id})
+                return int(cursor.fetchone()[0])
+            else:
+                return 5555
 
-        pidor = cursor.fetchone()
 
-        return pidor
+    def get_number_of_people_under_with_certificate(self, chat_id):
 
-        cursor.close()
+        with self.data_base.cursor() as cursor:
+
+            cursor.execute("SELECT * "
+                           "FROM ladder inner join abitu "
+                           "on abitu.email = ladder.email "
+                           "WHERE user_id = %(user_id)s);",
+                           {'user_id': chat_id})
+
+            if cursor.rowcount:
+                cursor.execute("SELECT Count(*) "
+                               "FROM ladder "
+                               "WHERE summary > "
+                               "(SELECT summary "
+                               "FROM ladder inner join abitu "
+                               "on abitu.email = ladder.email "
+                               "WHERE user_id = %(user_id)s)"
+                               "AND certificate = True;",
+                               {'user_id': chat_id})
+                return int(cursor.fetchone()[0]) + 1
+            else:
+                return 5555
+
+    def number_of_people(self):
+
+        with self.data_base.cursor() as cursor:
+            cursor.execute("SELECT Count(*)"
+                           "FROM ladder;")
+            return cursor.fetchone()[0]
