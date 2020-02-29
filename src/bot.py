@@ -48,12 +48,8 @@ def faq_question(message):
                 break
             i += 1
 
-    print(message_to_send)
     data_base_telegram.set_status(message.chat.id, "")
     bot.send_message(message.chat.id, message_to_send, parse_mode="HTML", reply_markup=keybord)
-
-
-
 
 
 @bot.message_handler(commands=['test'])
