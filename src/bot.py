@@ -13,5 +13,4 @@ def start_message(message):
     bot.send_message(message.chat.id, 'Hello World')
 
 
-if __name__ == '__main__':
-    bot.polling()
+bot.polling()
