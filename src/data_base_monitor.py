@@ -52,3 +52,24 @@ class DataBaseMonitor:
                        {'user_id': chat_id, 'email': email})
 
         cursor.close()
+
+    def get_position(self, chat_id):
+        cursor = self.data_base.cursor()
+
+        cursor.execute("Select * "
+                       "from USR "
+                       "where CHATID = %(user_id)s",
+                       {'user_id': chat_id})
+
+        email = cursor.fetchone()
+
+        cursor.execute("Select * "
+                       "from LADDER "
+                       "where EMAIL = %(user_id)s",
+                       {'user_id': email})
+
+        pidor = cursor.fetchone()
+
+        return pidor
+
+        cursor.close()
