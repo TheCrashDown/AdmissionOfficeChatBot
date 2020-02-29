@@ -90,16 +90,25 @@ class DataBaseMonitor:
                            "FROM ladder;")
             return cursor.fetchone()[0]
 
-    def receive_ladder(self):
+    def receive_ladder(self, chat_id):
 
         with self.data_base.cursor() as cursor:
+
+            cursor.execute("SELECT row_number "
+                           "FROM (SELECT *, row_number() over (ORDER BY summary DESC) from ladder) t "
+                           "inner join abitu on t.email = abitu.email where user_id = %(user_id)s",
+                           {'user_id': chat_id})
+
+            position = cursor.fetchone[0]
+
             cursor.execute("with t as "
                            "(SELECT row_number "
                            "FROM (SELECT *, row_number() over (ORDER BY summary DESC) from ladder) t "
-                           "inner join abitu on t.email = abitu.email where user_id = 391332114)"
+                           "inner join abitu on t.email = abitu.email where user_id = %(user_id)s)"
                            "Select rn, first_name, surname, summary, certificate "
                            "from (SELECT *, row_number() over (ORDER BY summary DESC) as rn from ladder) a "
                            "cross join t where rn >= (row_number - 2) and rn <= (row_number + 2) "
-                           "order by rn;")
+                           "order by rn;",
+                           {'user_id': chat_id})
 
-            return cursor.fetchall()
+            return cursor.fetchall(), position
