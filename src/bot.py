@@ -15,7 +15,7 @@ def start_message(message):
 
 @bot.message_handler(commands=['help'])
 def start_message(message):
-    with open("../res/help_message.txt") as f:
+    with open("res/help_message.txt", "r") as f:
         bot.send_message(message.chat.id, f.read(), reply_markup=keybord)
 
 
