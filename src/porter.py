@@ -16,6 +16,8 @@ class Porter:
     NN = re.compile(u"нн$")
 
     def stem(word):
+        if word == '':
+            return word
         word = word.lower()
         word = word.replace(u'ё', u'е')
         m = re.match(Porter.RVRE, word)
@@ -54,7 +56,7 @@ class Porter:
     stem=staticmethod(stem)
 
 if __name__ == '__main__':
-    print( Porter.stem(u'архиватор'))
+    print( Porter.stem(u''))
     print( Porter.stem(u'зеленый'))
     print( Porter.stem(u'девятнадцатый'))
     print( Porter.stem(u'охуевший'))
