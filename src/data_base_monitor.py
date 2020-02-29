@@ -9,10 +9,17 @@ class DataBaseMonitor:
 
         cursor = self.data_base.cursor()
 
-        cursor.execute("Create table if not exists ABITU ("
-                       "USER_ID varchar(20) primary key, "
-                       "STATUS TEXT DEFAULT NULL, "
-                       "EMAIL varchar(100) DEFAULT NULL"
+        cursor.execute("Create table if not exists LADDER ("
+                       "EMAIL varchar(100) PRIMARY KEY, "
+                       "NAME TEXT NOT NULL, "
+                       "SURNAME TEXT NOT NULL, "
+                       "SUMM INT DEFAULT 0, "
+                       "PHYSICS INT DEFAULT 0, "
+                       "MATHS INT DEFAULT 0, "
+                       "INF INT DEFAULT 0, "
+                       "RUS INT DEFAULT 0, "
+                       "PHYSTECH-SCHOOL INT DEFAULT -1, "
+                       "DIRECTION TEXT, "
                        ");")
 
         cursor.close()
