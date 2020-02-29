@@ -31,7 +31,10 @@ def parse_question_answer(qwa_parsed_list):
                 if question_with_answer.name == 'h2':
                     qwa_parsed_list.append(["Бакалавриат. " + question_with_answer.string, ""])
                 else:
-                    qwa_parsed_list[-1][1] += str(question_with_answer)
+                    add_str = question_with_answer.string
+                    if add_str is None:
+                        add_str = question_with_answer.get_text()
+                    qwa_parsed_list[-1][1] += add_str
 
 
 def parse_faq(qwa_parsed_list):
