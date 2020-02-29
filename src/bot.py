@@ -1,10 +1,13 @@
 import telebot
 import threading
 from src.faqer import get_answer
+from src.data_base import DataBase
 
 from config.secret_config.TOKEN import TOKEN
+from config.secret_config.DataBase import DB_NAME, DB_USER, DB_PASSWORD
 
 bot = telebot.TeleBot(TOKEN)
+data_base = DataBase(DB_NAME, DB_USER, DB_PASSWORD)
 
 keybord = telebot.types.ReplyKeyboardMarkup()
 keybord.row("FAQ")
