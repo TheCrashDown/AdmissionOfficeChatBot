@@ -44,7 +44,7 @@ def logout_message(message):
     if email is None:
         bot.send_message(message.chat.id, "Вы не зашли в систему. Используйте команду /login чтобы сделать это.", reply_markup=telebot.types.ReplyKeyboardRemove())
         return
-    data_base_telegram.set_mail(message.chat.id, None)
+    data_base_telegram.set_email(message.chat.id, None)
 
 
 @bot.message_handler(commands=['faq'])
