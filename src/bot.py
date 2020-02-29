@@ -106,15 +106,10 @@ def monitoring_message(message):
 @bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "SEND_MAIL")
 def set_mail(message):
     data_base_telegram.set_email(message.chat.id, message.text)
-    data_base_telegram.set_status(message.chat.id, "SEND_PASSWORD")
-    bot.send_message(message.chat.id, "Введите пароль")
-
-
-@bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "SEND_PASSWORD")
-def set_mail(message):
-    # (na password).poxui
     data_base_telegram.set_status(message.chat.id, "")
     monitoring(message.chat.id)
+
+
 
 
 
