@@ -76,7 +76,7 @@ class DataBaseMonitor:
                                "(SELECT summary "
                                "FROM ladder inner join abitu "
                                "on abitu.email = ladder.email "
-                               "WHERE user_id = %(user_id)s)"
+                               "WHERE user_id = %(user_id)s) "
                                "AND certificate = True;",
                                {'user_id': chat_id})
                 return int(cursor.fetchone()[0])
@@ -89,3 +89,8 @@ class DataBaseMonitor:
             cursor.execute("SELECT Count(*)"
                            "FROM ladder;")
             return cursor.fetchone()[0]
+
+    def receive_ladder(self):
+
+        with self.data_base.cursor() as cursor:
+            cursor.execute()
