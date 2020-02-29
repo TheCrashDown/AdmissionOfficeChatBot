@@ -37,11 +37,11 @@ def test_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == 'faq':
-        start_message()
+        bot.send_message(message.chat.id, 'ФАК еще не распирсили, ожидайте')
     elif message.text.lower() == 'monitoring':
-        monitoring_message()
+        bot.send_message(message.chat.id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
     elif message.text.lower() == 'test':
-        test_message()
+        bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
 
 
 
