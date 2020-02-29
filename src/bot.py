@@ -13,8 +13,7 @@ data_base_telegram = DataBaseTelegram(DB_NAME, DB_USER, DB_PASSWORD)
 data_base_monitor = DataBaseMonitor(DB_NAME, DB_USER, DB_PASSWORD)
 
 keybord = telebot.types.ReplyKeyboardMarkup()
-keybord.row("FAQ")
-keybord.row("Test", "Monitoring")
+keybord.row("FAQ", "Monitoring")
 
 
 @bot.message_handler(commands=['start'])
@@ -45,10 +44,11 @@ def login_message(message):
 def logout_message(message):
     email = data_base_telegram.get_email(message.chat.id)
     if email is None:
-        bot.send_message(message.chat.id, "Вы не зашли в систему. Используйте команду /login чтобы сделать это.",
+        bot.send_message(message.chat.id, "Вы не вошли в систему. Используйте команду /login чтобы сделать это.",
                          reply_markup=telebot.types.ReplyKeyboardRemove())
         return
     data_base_telegram.set_email(message.chat.id, None)
+    bot.send_message(message.chat.id, "Вы успешно разлогинились. Используйте команду /login, чтобы снова войти в систему.")
 
 
 @bot.message_handler(commands=['faq'])
@@ -73,12 +73,6 @@ def faq_question(message):
 
     data_base_telegram.set_status(message.chat.id, "")
     bot.send_message(message.chat.id, message_to_send, parse_mode="HTML", reply_markup=keybord)
-
-
-@bot.message_handler(commands=['test'])
-@bot.message_handler(func=lambda message: message.text.lower() == 'test')
-def test_message(message):
-    bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
 
 
 def monitoring(chat_id):
@@ -125,7 +119,9 @@ def monitoring_message(message):
 
 @bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "SEND_MAIL")
 def set_mail(message):
-    data_base_telegram.set_email(message.chat.id, message.text)
+    if data_base_telegram.set_email(message.chat.id, message.text):
+        bot.send_message(message.chat.id, "Пользователя с такой почтой не существует")
+        return
     data_base_telegram.set_status(message.chat.id, "")
     monitoring(message.chat.id)
 
