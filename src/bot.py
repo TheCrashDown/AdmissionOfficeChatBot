@@ -15,9 +15,11 @@ def start_message(message):
 
 
 @bot.message_handler(commands=['help'])
+@bot.message_handler(func=lambda message: message.text.lower() == 'help')
 def start_message(message):
     with open("res/help_message.txt", "r") as f:
         bot.send_message(message.chat.id, f.read())
+
 
 @bot.message_handler(commands=['faq'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'faq')
@@ -35,7 +37,6 @@ def monitoring_message(message):
 @bot.message_handler(func=lambda message: message.text.lower() == 'test')
 def test_message(message):
     bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
-
 
 
 bot_thread = threading.Thread(target=bot.polling)
