@@ -86,16 +86,9 @@ def monitoring(chat_id):
 
     str_to_send = 'Текущее состояние таблицы таково:\n<pre>\n.....................\n'
 
-    i = 0
-
     for row in ladder:
-        i += 1
-        if i == min(number, 3):
-            str_to_send += "<bold>"
-        str_to_send += "{: <2}{: <12}{: <12}{: <5}{}\n".format(row[0], row[1], row[2], row[3],
+        str_to_send += "{: >2} {: <12}{: <12}{: <5}{}\n".format(row[0], row[1], row[2], row[3],
                                                                        "Оригинал" if row[4] else "Копия")
-        if i == min(number, 3):
-            str_to_send += "</bold>"
 
     str_to_send += ".....................\n</pre>\n"
 

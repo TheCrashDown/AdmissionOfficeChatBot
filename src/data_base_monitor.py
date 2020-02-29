@@ -99,7 +99,7 @@ class DataBaseMonitor:
                            "inner join abitu on t.email = abitu.email where user_id = %(user_id)s",
                            {'user_id': chat_id})
 
-            position = cursor.fetchone[0]
+            position = cursor.fetchone()[0]
 
             cursor.execute("with t as "
                            "(SELECT row_number "
