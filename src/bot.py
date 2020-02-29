@@ -78,7 +78,10 @@ def test_message(message):
 def monitoring(chat_id):
     bot.send_message(chat_id, 'Текущее состояние таблицы таково:', reply_markup=keybord)
 
-    # print some ladder rows
+    ladder = data_base_monitor.receive_ladder()
+
+    for row in ladder:
+        bot.send_message(chat_id, str(row))
 
     your_summary = data_base_monitor.get_summary(chat_id)
     number_of_people = data_base_monitor.number_of_people()
