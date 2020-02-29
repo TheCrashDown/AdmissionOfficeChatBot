@@ -58,7 +58,7 @@ def test_message(message):
     bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
 
 def monitoring(chat_id):
-    bot.send_message(chat_id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
+    bot.send_message(chat_id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы', reply_markup=keybord)
 
 @bot.message_handler(commands=['monitoring'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'monitoring')
