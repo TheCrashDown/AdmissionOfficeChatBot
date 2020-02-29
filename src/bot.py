@@ -48,6 +48,7 @@ def logout_message(message):
                          reply_markup=telebot.types.ReplyKeyboardRemove())
         return
     data_base_telegram.set_email(message.chat.id, None)
+    bot.send_message(message.chat.id, "Вы успешно разлогинились. Используйте команду /login, чтобы снова войти в систему.")
 
 
 @bot.message_handler(commands=['faq'])
