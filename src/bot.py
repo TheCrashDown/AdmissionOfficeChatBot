@@ -73,7 +73,7 @@ def monitoring(chat_id):
              Всего людей, подавших документы: {3}\n \
              Проходной балл в прошлом году: 262".format(your_summary, above, above_, number_of_people)
 
-    bot.send_message(message.chat.id, stats)
+    bot.send_message(chat_id, stats)
 
 @bot.message_handler(commands=['monitoring'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'monitoring')
