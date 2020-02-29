@@ -37,7 +37,7 @@ class DataBaseMonitor:
                        "where CHATID = %(user_id)s",
                        {'user_id': chat_id})
 
-        if cursor.row_count == 0:
+        if cursor.rowcount == 0:
             cursor.close()
             return 0
 
