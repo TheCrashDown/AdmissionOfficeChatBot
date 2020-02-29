@@ -8,6 +8,7 @@ from config.secret_config.DataBase import DB_NAME, DB_USER, DB_PASSWORD
 
 bot = telebot.TeleBot(TOKEN)
 data_base_telegram = DataBaseTelegram(DB_NAME, DB_USER, DB_PASSWORD)
+data_base_monitor = DataBaseMonitor(DB_NAME, DB_USER, DB_PASSWORD)
 
 keybord = telebot.types.ReplyKeyboardMarkup()
 keybord.row("FAQ")
@@ -35,6 +36,10 @@ def faq_message(message):
 @bot.message_handler(commands=['monitoring'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'monitoring')
 def monitoring_message(message):
+    if data_base_monitor.check_user(message.chat.id) == 0:
+        print("Чтобы увидеть свое место в рейтинге, укажите свой e-mail, чтобы мы поняли кто вы")
+        email = input()
+        data_base_monitor.reg_user(message.chat.id, email)
     bot.send_message(message.chat.id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
 
 
