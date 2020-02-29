@@ -17,9 +17,9 @@ def start_message(message):
 def send_text(message):
     if message.text.lower() == 'faq':
         bot.send_message(message.chat.id, 'ФАК еще не распирсили, ожидайте')
-    elif message.text.lower() == 'Monitoring':
+    elif message.text.lower() == 'monitoring':
         bot.send_message(message.chat.id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
-    elif message.text.lower() == 'Test':
+    elif message.text.lower() == 'test':
         bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')    
 
 
