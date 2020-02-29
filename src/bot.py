@@ -20,8 +20,9 @@ def start_message(message):
         bot.send_message(message.chat.id, f.read())
 
 @bot.message_handler(commands=['faq'])
+@bot.message_handler(func=lambda message: message.text == 'FAQ')
 def faq_message(message):
-    bot.send_message(message.chat.id, 'ФАК еще не распирсили, ожидайте')
+    bot.send_message(message.chat.id, 'ФАК еще не распирсили, ожидайте, но УРА')
 
 
 @bot.message_handler(commands=['monitoring'])
