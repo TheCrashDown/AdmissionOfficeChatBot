@@ -1,10 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+import time
 import csv
+import os
 
 
 def parse_question_answer(qwa_parsed_list):
-
     html_query = requests.get("https://pk.mipt.ru/bachelor/question-answer/", verify=False)
 
     if not html_query.ok:
@@ -34,7 +35,6 @@ def parse_question_answer(qwa_parsed_list):
 
 
 def parse_faq(qwa_parsed_list):
-
     html_query = requests.get("https://pk.mipt.ru/faq/", verify=False)
 
     if not html_query.ok:
@@ -59,6 +59,7 @@ def parse_faq(qwa_parsed_list):
 
 
 def parse():
+    print("Parsing...")
     qwa_parsed_list = []
 
     parse_question_answer(qwa_parsed_list)
@@ -71,4 +72,5 @@ def parse():
             f_csv.writerow(row)
 
 
-parse()
+if (time.time() - os.path.getmtime('data/queries.csv')) > 3600:
+    parse()
