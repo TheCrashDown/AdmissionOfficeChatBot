@@ -19,6 +19,6 @@ class DataBase:
     def add_user(self, chat_id):
         cursor = self.data_base.cursor()
 
-        cursor.execute("Insert into abitu (USER_ID, STATUS_TEXT, EMAIL) "
+        cursor.execute("Insert into abitu (USER_ID, STATUS, EMAIL) "
                        "values(%(user_id)s, DEFAULT, DEFAULT )",
                        {'user_id': chat_id})
