@@ -75,9 +75,18 @@ class DataBaseTelegram:
     def set_email(self, chat_id, email):
         cursor = self.data_base.cursor()
 
+        cursor.execute("SELECT * "
+                       "FROM ladder "
+                       "Where email = %(email)s",
+                       {'email': email})
+
+        if (not cursor.rowcount) and email is not None:
+            return 1
+
         cursor.execute("UPDATE abitu "
                        "set EMAIL = %(email)s "
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id, 'email': email})
 
         cursor.close()
+        return 0

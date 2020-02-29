@@ -119,7 +119,8 @@ def monitoring_message(message):
 
 @bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "SEND_MAIL")
 def set_mail(message):
-    data_base_telegram.set_email(message.chat.id, message.text)
+    if data_base_telegram.set_email(message.chat.id, message.text):
+        bot.send_message(message.chat.id, "Пользователя с такой почтой не существует")
     data_base_telegram.set_status(message.chat.id, "")
     monitoring(message.chat.id)
 
