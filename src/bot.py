@@ -2,6 +2,7 @@ import telebot
 import threading
 from src.faqer import get_answer
 from src.data_base_telegram import DataBaseTelegram
+import csv
 
 from config.secret_config.TOKEN import TOKEN
 from config.secret_config.DataBase import DB_NAME, DB_USER, DB_PASSWORD
@@ -29,7 +30,17 @@ def start_message(message):
 @bot.message_handler(commands=['faq'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'faq')
 def faq_message(message):
-    bot.send_message(message.chat.id, 'ФАК еще не распирсили, ожидайте, но УРА')
+    data_base_telegram.set_status(message.chat.id, "FAQ")
+    bot.send_message(message.chat.id, 'Напишите ваше сообщение', reply_markup=telebot.types.ReplyKeyboardRemove())
+
+@bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "FAQ")
+def faq_question(message):
+    message_to_send = "Sorry, error happened"
+    with open("data/queries.csv") as f:
+        f_csv = csv.reader(f)
+        message_to_send = f_csv[get_answer(message.text)][1]
+
+    bot.send_message(message.chat.id, message_to_send, parse_mode="HTML", reply_markup=keybord)
 
 
 @bot.message_handler(commands=['monitoring'])
@@ -41,9 +52,9 @@ def monitoring_message(message):
 @bot.message_handler(commands=['test'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'test')
 def test_message(message):
-    print(data_base_telegram.get_status(message.chat.id))
-    data_base_telegram.set_status(message.chat.id, message.text)
     bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
+
+
 
 
 bot_thread = threading.Thread(target=bot.polling)

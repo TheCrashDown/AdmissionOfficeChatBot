@@ -47,6 +47,21 @@ class DataBaseTelegram:
             return None
         return ret[0]
 
+    def get_email(self, chat_id):
+        cursor = self.data_base.cursor()
+
+        cursor.execute("Select EMAIL "
+                       "from abitu "
+                       "where user_id = %(user_id)s",
+                       {'user_id': chat_id})
+
+        ret = cursor.fetchone()
+        cursor.close()
+
+        if ret is None:
+            return None
+        return ret[0]
+
     def set_status(self, chat_id, status):
         cursor = self.data_base.cursor()
 
@@ -54,5 +69,15 @@ class DataBaseTelegram:
                        "set STATUS = %(status)s"
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id, 'status': status})
+
+        cursor.close()
+
+    def set_email(self, chat_id, email):
+        cursor = self.data_base.cursor()
+
+        cursor.execute("UPDATE abitu "
+                       "set EMAIL = %(email)s"
+                       "where user_id = %(user_id)s",
+                       {'user_id': chat_id, 'email': email})
 
         cursor.close()
