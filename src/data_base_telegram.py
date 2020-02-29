@@ -25,7 +25,7 @@ class DataBaseTelegram:
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id})
 
-        if not cursor.row_count:
+        if not cursor.rowcount:
             cursor.execute("Insert into abitu (USER_ID, STATUS, EMAIL) "
                            "values(%(user_id)s, DEFAULT, DEFAULT )",
                            {'user_id': chat_id})
