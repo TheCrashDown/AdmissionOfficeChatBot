@@ -28,6 +28,24 @@ def start_message(message):
     with open("res/help_message.txt", "r") as f:
         bot.send_message(message.chat.id, f.read())
 
+@bot.message_handler(commands=['login'])    
+def login_message(message):
+    email = data_base_telegram.get_email(message.chat.id)
+    if email is None:
+        data_base_telegram.set_status(message.chat.id, "SEND_MAIL")
+        bot.send_message(message.chat.id, "Укажите свой e-mail", reply_markup=telebot.types.ReplyKeyboardRemove())
+        return
+    bot.send_message(message.chat.id, "Вы уже залогинились как " + email + ". Используйте команду /logout чтобы выйти из системы.")
+
+
+@bot.message_handler(commands=['logout'])    
+def logout_message(message):
+    email = data_base_telegram.get_email(message.chat.id)
+    if email is None:
+        bot.send_message(message.chat.id, "Вы не зашли в систему. Используйте команду /login чтобы сделать это.", reply_markup=telebot.types.ReplyKeyboardRemove())
+        return
+    data_base_telegram.set_mail(message.chat.id, None)
+
 
 @bot.message_handler(commands=['faq'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'faq')
@@ -59,13 +77,13 @@ def test_message(message):
 
 def monitoring(chat_id):
     bot.send_message(chat_id, 'Текущее состояние таблицы таково:', reply_markup=keybord)
-    # print some ladder
+
+    # print some ladder rows
 
     your_summary = data_base_monitor.get_summary(chat_id)
     number_of_people = data_base_monitor.number_of_people()
     above = data_base_monitor.get_number_of_people_above(chat_id)
     above_ = data_base_monitor.get_number_of_people_above_with_certificate(chat_id)
-
 
     stats = ("У вас баллов: {0}\n"
             "Количество людей выше вас: {1}\n"
@@ -84,17 +102,20 @@ def monitoring_message(message):
         return
     monitoring(message.chat.id)
 
+
 @bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "SEND_MAIL")
 def set_mail(message):
     data_base_telegram.set_email(message.chat.id, message.text)
+    data_base_telegram.set_status(message.chat.id, "SEND_PASSWORD")
+    bot.send_message(message.chat.id, "Введите пароль")
+
+
+@bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "SEND_PASSWORD")
+def set_mail(message):
+    # (na password).poxui
     data_base_telegram.set_status(message.chat.id, "")
     monitoring(message.chat.id)
 
-
-
-@bot.message_handler()
-def get_message(message):
-    return message
 
 
 
