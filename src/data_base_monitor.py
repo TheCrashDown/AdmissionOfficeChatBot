@@ -47,8 +47,8 @@ class DataBaseMonitor:
 
     def get_summary(self, chat_id):
         with self.data_base.cursor() as cursor:
-            cursor.execute("SELECT summary"
-                           "FROM ladder"
+            cursor.execute("SELECT summary "
+                           "FROM ladder "
                            "WHERE user_id = %(user_id)s);",
                            {'user_id': chat_id})
             return cursor.fetchone()[0]
