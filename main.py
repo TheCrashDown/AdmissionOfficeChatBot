@@ -1,5 +1,8 @@
-from src.bot import bot
 import time
+
+from sys import path
+path.append("./src")
+
 from src.parser import parse
 
 if __name__ == '__main__':
