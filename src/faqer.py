@@ -8,7 +8,7 @@ def delete_noisy_words(text):
     text = " ".join(re.split('[^а-я]', text))
     text = " " + text
 
-    with open("../res/noisy_words.txt") as file:
+    with open("res/noisy_words.txt") as file:
         noisy_words = [word.replace("\n", "") for word in file.readlines()]
 
     for odd_word in noisy_words:
