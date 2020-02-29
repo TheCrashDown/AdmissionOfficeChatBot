@@ -8,8 +8,6 @@ import csv
 from config.secret_config.TOKEN import TOKEN
 from config.secret_config.DataBase import DB_NAME, DB_USER, DB_PASSWORD
 
-from src.monitor_handling import monitoring_message
-
 bot = telebot.TeleBot(TOKEN)
 data_base_telegram = DataBaseTelegram(DB_NAME, DB_USER, DB_PASSWORD)
 data_base_monitor = DataBaseMonitor(DB_NAME, DB_USER, DB_PASSWORD)
@@ -44,11 +42,7 @@ def faq_question(message):
         f_csv = csv.reader(f, delimiter='\t')
         i = 0
         needed_i = get_answer(message.text)
-        print(needed_i)
         for query in f_csv:
-            print(query)
-            print(i)
-            print("----------------------------------------")
             if i == needed_i:
                 message_to_send = query[1]
                 break
@@ -58,14 +52,10 @@ def faq_question(message):
     bot.send_message(message.chat.id, message_to_send, parse_mode="HTML", reply_markup=keybord)
 
 
-
-
-
 @bot.message_handler(commands=['test'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'test')
 def test_message(message):
     bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
-
 
 
 
