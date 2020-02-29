@@ -1,4 +1,5 @@
 import telebot
+import threading
 
 from config.secret_config.TOKEN import TOKEN
 
@@ -31,4 +32,5 @@ def send_text(message):
 
 
 
-bot.polling()
+bot_thread = threading.Thread(target=bot.polling)
+bot_thread.start()
