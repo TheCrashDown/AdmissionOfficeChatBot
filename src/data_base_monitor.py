@@ -18,7 +18,7 @@ class DataBaseMonitor:
                        "MATHS INTEGER DEFAULT 0, "
                        "INF INTEGER DEFAULT 0, "
                        "RUS INTEGER DEFAULT 0, "
-                       "PHYSTECH-SCHOOL INTEGER DEFAULT -1, "
+                       "PHYSTECH_SCHOOL INTEGER DEFAULT -1, "
                        "DIRECTION TEXT, "
                        ");")
 
@@ -30,23 +30,25 @@ class DataBaseMonitor:
         cursor.close()
 
     def check_user(self, chat_id):
-      cursor = self.data_base.cursor()
+        cursor = self.data_base.cursor()
 
-      cursor.execute("Select * "
-                     "from USR "
-                     "where CHATID = %(user_id)s",
-                     {'user_id': chat_id})
+        cursor.execute("Select * "
+                       "from USR "
+                       "where CHATID = %(user_id)s",
+                       {'user_id': chat_id})
 
-      if cursor.row_count == 0:
-        return 0
+        if cursor.row_count == 0:
+            cursor.close()
+            return 0
 
-      return 1
-
+        cursor.close()
+        return 1
 
     def reg_user(self, chat_id, email):
-      cursor.execute("Insert into USR (EMAIL, CHATID) "
-                     "values(%(user_id)s, %(email)s )",
-                     {'user_id': chat_id, 'email': email})
+        cursor = self.data_base.cursor()
 
-    
+        cursor.execute("Insert into USR (EMAIL, CHATID) "
+                       "values(%(user_id)s, %(email)s )",
+                       {'user_id': chat_id, 'email': email})
 
+        cursor.close()
