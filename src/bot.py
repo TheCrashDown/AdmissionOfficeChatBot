@@ -41,7 +41,7 @@ def faq_message(message):
 def faq_question(message):
     message_to_send = "Sorry, error happened"
     with open("data/queries.csv") as f:
-        f_csv = csv.reader(f)
+        f_csv = csv.reader(f, delimiter='\t')
         i = 0
         needed_i = get_answer(message.text)
         print(needed_i)

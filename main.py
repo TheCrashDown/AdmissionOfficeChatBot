@@ -1,4 +1,4 @@
-from src.bot import bot
+#from src.bot import bot
 import time
 from src.parser import parse
 
