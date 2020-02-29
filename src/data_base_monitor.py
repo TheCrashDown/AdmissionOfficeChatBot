@@ -11,13 +11,10 @@ class DataBaseMonitor:
 
         cursor.execute("Create table if not exists LADDER ("
                        "EMAIL varchar(100) PRIMARY KEY, "
-                       "NAME TEXT NOT NULL, "
+                       "FIRST_NAME TEXT NOT NULL, "
                        "SURNAME TEXT NOT NULL, "
-                       "SUMM INTEGER DEFAULT 0, "
-                       "PHYSICS INTEGER DEFAULT 0, "
-                       "MATHS INTEGER DEFAULT 0, "
-                       "INF INTEGER DEFAULT 0, "
-                       "RUS INTEGER DEFAULT 0, "
+                       "SUMMARY INTEGER DEFAULT 0, "
+                       "CERTIFICATE BOOLEAN DEFAULT False"
                        "PHYSTECH_SCHOOL INTEGER DEFAULT -1, "
                        "DIRECTION TEXT "
                        ");")
