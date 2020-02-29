@@ -84,7 +84,7 @@ def test_message(message):
 def monitoring(chat_id):
     ladder, number = data_base_monitor.receive_ladder(chat_id)
 
-    str_to_send = 'Текущее состояние таблицы таково:\n<pre>\n.....................\n'
+    str_to_send = 'Текущее состояние таблицы таково:\n<pre>\n  .....................\n'
 
     for row in ladder:
         if row[0] == number:
@@ -94,7 +94,7 @@ def monitoring(chat_id):
         str_to_send += "{: >2} {: <12}{: <12}{: <5}{}\n".format(row[0], row[1], row[2], row[3],
                                                                        "Оригинал" if row[4] else "Копия")
 
-    str_to_send += ".....................\n</pre>\n"
+    str_to_send += "  .....................\n</pre>\n"
 
     bot.send_message(chat_id, str_to_send, reply_markup=keybord, parse_mode='HTML')
 
