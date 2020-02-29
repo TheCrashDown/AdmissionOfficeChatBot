@@ -41,7 +41,7 @@ def faq_question(message):
     with open("data/queries.csv") as f:
         f_csv = csv.reader(f)
         i = 0
-        needed_i = get_answer(message.chat.id)
+        needed_i = get_answer(message.text)
         print(needed_i)
         for query in f_csv:
             print(query)
