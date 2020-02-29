@@ -1,5 +1,6 @@
 import telebot
 import threading
+from src.faqer import get_answer
 
 from config.secret_config.TOKEN import TOKEN
 

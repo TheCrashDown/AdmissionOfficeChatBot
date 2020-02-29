@@ -1,2 +1,2 @@
 def get_answer(question):
-    pass
+    return int(question[::-1])
