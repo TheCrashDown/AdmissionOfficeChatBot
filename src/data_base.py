@@ -8,9 +8,17 @@ class DataBase:
 
         cursor = self.data_base.cursor()
 
-        cursor.execute('Create table if not exists ABITU ( \
-                        USER_ID varchar(20) primary key, \
-                        STATUS TEXT, \
-                        EMAIL varchar(100)\
-                        );')
+        cursor.execute("Create table if not exists ABITU ("
+                       "USER_ID varchar(20) primary key, "
+                       "STATUS TEXT DEFAULT NULL, "
+                       "EMAIL varchar(100) DEFAULT NULL"
+                       ");")
 
+        cursor.close()
+
+    def add_user(self, chat_id):
+        cursor = self.data_base.cursor()
+
+        cursor.execute("Insert into abitu (USER_ID, STATUS_TEXT, EMAIL) "
+                       "values(%(user_id)s, DEFAULT, DEFAULT )",
+                       {'user_id': chat_id})
