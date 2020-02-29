@@ -1,6 +1,5 @@
 import requests
 
-
 def correct(text):
 
     url = "https://speller.yandex.net/services/spellservice.json/checkText?text="
@@ -15,5 +14,7 @@ def correct(text):
 
     return fixed
 
+"""
 if __name__ == '__main__':
     print(correct("мой дядя самх чесных правилкогда не в шутку занемог"))
+"""
