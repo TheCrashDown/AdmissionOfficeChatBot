@@ -48,10 +48,14 @@ class DataBaseMonitor:
     def get_summary(self, chat_id):
         with self.data_base.cursor() as cursor:
             cursor.execute("SELECT summary "
-                           "FROM ladder "
+                           "FROM ladder inner join abitu "
+                           "on abitu.email = ladder.email "
                            "WHERE user_id = %(user_id)s;",
                            {'user_id': chat_id})
-            return cursor.fetchone()[0]
+            if cursor.fetchone() is None:
+                return 0 # hui
+            else:
+                return int(cursor.fetchone()[0])
 
 
     def get_number_of_people_above_with_certificate(self, chat_id):
@@ -74,7 +78,7 @@ class DataBaseMonitor:
                                "WHERE user_id = %(user_id)s)"
                                "AND certificate = True;",
                                {'user_id': chat_id})
-                return int(cursor.fetchone()[0]) + 1
+                return int(cursor.fetchone()[0])
             else:
                 return 5555
 
