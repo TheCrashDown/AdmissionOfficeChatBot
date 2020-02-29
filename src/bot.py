@@ -20,27 +20,21 @@ def start_message(message):
         bot.send_message(message.chat.id, f.read())
 
 @bot.message_handler(commands=['faq'])
-@bot.message_handler(func=lambda message: message.text == 'FAQ')
+@bot.message_handler(func=lambda message: message.text.lower() == 'faq')
 def faq_message(message):
     bot.send_message(message.chat.id, 'ФАК еще не распирсили, ожидайте, но УРА')
 
 
 @bot.message_handler(commands=['monitoring'])
+@bot.message_handler(func=lambda message: message.text.lower() == 'monitoring')
 def monitoring_message(message):
     bot.send_message(message.chat.id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
 
 
 @bot.message_handler(commands=['test'])
+@bot.message_handler(func=lambda message: message.text.lower() == 'test')
 def test_message(message):
     bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
-
-
-@bot.message_handler(content_types=['text'])
-def send_text(message):
-    if message.text.lower() == 'monitoring':
-        bot.send_message(message.chat.id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
-    elif message.text.lower() == 'test':
-        bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
 
 
 
