@@ -40,7 +40,7 @@ class DataBaseTelegram:
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id})
 
-        ret = cursor.fetch
+        ret = cursor.fetchone()
         cursor.close()
 
         if ret is None:
