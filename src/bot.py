@@ -61,10 +61,13 @@ def test_message(message):
 @bot.message_handler(commands=['monitoring'])
 @bot.message_handler(func=lambda message: message.text.lower() == 'monitoring')
 def monitoring_message(message):
-    if data_base_monitor.get_email(message.chat.id) == None:
+    print("---------------------monitor start")
+    if data_base_telegram.get_email(message.chat.id) == None:
         bot.send_message(message.chat.id, "Чтобы увидеть свое место в рейтинге, укажите свой e-mail, чтобы мы поняли кто вы")
         email = get_message()
-        data_base_monitor.set_email(message.chat.id, email)
+        print("---------------------")
+        print(email)
+        data_base_telegram.set_email(message.chat.id, email)
     bot.send_message(message.chat.id, 'Ваши шансы поступить стремятся к размеру вашего члена, сори как бы')
 
 
