@@ -42,7 +42,11 @@ def faq_question(message):
         f_csv = csv.reader(f)
         i = 0
         needed_i = get_answer(message.chat.id)
+        print(needed_i)
         for query in f_csv:
+            print(query)
+            print(i)
+            print("----------------------------------------")
             if i == needed_i:
                 message_to_send = query[1]
                 break
