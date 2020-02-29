@@ -28,7 +28,7 @@ class DataBaseMonitor:
             cursor.execute("SELECT * "
                            "FROM ladder inner join abitu "
                            "on abitu.email = ladder.email "
-                           "WHERE user_id = %(user_id)s);",
+                           "WHERE user_id = %(user_id)s;",
                            {'user_id': chat_id})
 
             if cursor.rowcount:
@@ -38,7 +38,7 @@ class DataBaseMonitor:
                                "(SELECT summary "
                                "FROM ladder inner join abitu "
                                "on abitu.email = ladder.email "
-                               "WHERE user_id = %(user_id)s);",
+                               "WHERE user_id = %(user_id)s;",
                                {'user_id': chat_id})
                 return int(cursor.fetchone()[0])
             else:
@@ -49,7 +49,7 @@ class DataBaseMonitor:
         with self.data_base.cursor() as cursor:
             cursor.execute("SELECT summary "
                            "FROM ladder "
-                           "WHERE user_id = %(user_id)s);",
+                           "WHERE user_id = %(user_id)s;",
                            {'user_id': chat_id})
             return cursor.fetchone()[0]
 
@@ -61,7 +61,7 @@ class DataBaseMonitor:
             cursor.execute("SELECT * "
                            "FROM ladder inner join abitu "
                            "on abitu.email = ladder.email "
-                           "WHERE user_id = %(user_id)s);",
+                           "WHERE user_id = %(user_id)s;",
                            {'user_id': chat_id})
 
             if cursor.rowcount:
