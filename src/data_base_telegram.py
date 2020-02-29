@@ -25,7 +25,7 @@ class DataBaseTelegram:
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id})
 
-        if not cursor.row_count:
+        if not cursor.rowcount:
             cursor.execute("Insert into abitu (USER_ID, STATUS, EMAIL) "
                            "values(%(user_id)s, DEFAULT, DEFAULT )",
                            {'user_id': chat_id})
@@ -40,7 +40,7 @@ class DataBaseTelegram:
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id})
 
-        ret = cursor.fetch
+        ret = cursor.fetchone()
         cursor.close()
 
         if ret is None:
@@ -51,7 +51,7 @@ class DataBaseTelegram:
         cursor = self.data_base.cursor()
 
         cursor.execute("UPDATE abitu "
-                       "set STATUS = %s(status)"
+                       "set STATUS = %(status)s"
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id, 'status': status})
 

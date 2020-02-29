@@ -42,7 +42,7 @@ def monitoring_message(message):
 @bot.message_handler(func=lambda message: message.text.lower() == 'test')
 def test_message(message):
     print(data_base_telegram.get_status(message.chat.id))
-    data_base_telegram.set_status(message.text)
+    data_base_telegram.set_status(message.chat.id, message.text)
     bot.send_message(message.chat.id, 'Да что тут тестировать видно же что вы пидор')
 
 
