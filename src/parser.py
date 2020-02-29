@@ -66,7 +66,7 @@ def parse():
     parse_faq(qwa_parsed_list)
 
     with open("data/queries.csv", "w") as f:
-        f_csv = csv.writer(f)
+        f_csv = csv.writer(f, delimiter='\t')
 
         for row in qwa_parsed_list:
             f_csv.writerow(row)
