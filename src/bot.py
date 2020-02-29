@@ -121,6 +121,7 @@ def monitoring_message(message):
 def set_mail(message):
     if data_base_telegram.set_email(message.chat.id, message.text):
         bot.send_message(message.chat.id, "Пользователя с такой почтой не существует")
+        return
     data_base_telegram.set_status(message.chat.id, "")
     monitoring(message.chat.id)
 
