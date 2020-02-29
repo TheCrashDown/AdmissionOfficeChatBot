@@ -38,7 +38,7 @@ class DataBaseMonitor:
                                "(SELECT summary "
                                "FROM ladder inner join abitu "
                                "on abitu.email = ladder.email "
-                               "WHERE user_id = %(user_id)s;",
+                               "WHERE user_id = %(user_id)s);",
                                {'user_id': chat_id})
                 return int(cursor.fetchone()[0])
             else:
