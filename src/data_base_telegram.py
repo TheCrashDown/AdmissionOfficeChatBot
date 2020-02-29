@@ -10,7 +10,7 @@ class DataBaseTelegram:
         cursor = self.data_base.cursor()
 
         cursor.execute("Create table if not exists ABITU ("
-                       "USER_ID varchar(20) primary key, "
+                       "USER_ID INTEGER primary key, "
                        "STATUS TEXT DEFAULT NULL, "
                        "EMAIL varchar(100) DEFAULT NULL"
                        ");")
