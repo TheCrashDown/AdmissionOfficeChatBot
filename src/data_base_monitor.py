@@ -19,12 +19,12 @@ class DataBaseMonitor:
                        "INF INTEGER DEFAULT 0, "
                        "RUS INTEGER DEFAULT 0, "
                        "PHYSTECH_SCHOOL INTEGER DEFAULT -1, "
-                       "DIRECTION TEXT, "
+                       "DIRECTION TEXT "
                        ");")
 
         cursor.execute("Create table if not exists USR ("
                        "EMAIL varchar(100) PRIMARY KEY, "
-                       "CHATID INTEGER UNIQUE, "
+                       "CHATID INTEGER UNIQUE "
                        ");")
 
         cursor.close()
