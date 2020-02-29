@@ -13,6 +13,12 @@ def start_message(message):
     bot.send_message(message.chat.id, 'Hello World', reply_markup=keybord)
 
 
+@bot.message_handler(commands=['help'])
+def start_message(message):
+    with open("res/help_message.txt", "r") as f:
+        bot.send_message(message.chat.id, f.read(), reply_markup=keybord)
+
+
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == 'faq':
