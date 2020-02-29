@@ -21,6 +21,8 @@ class Porter:
         word = word.lower()
         word = word.replace(u'ё', u'е')
         m = re.match(Porter.RVRE, word)
+        if m is None:
+            return ''
         if m.groups():
             pre = m.group(1)
             rv = m.group(2)
