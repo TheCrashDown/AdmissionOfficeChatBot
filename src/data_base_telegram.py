@@ -58,7 +58,7 @@ class DataBaseTelegram:
         ret = cursor.fetchone()
         cursor.close()
 
-        if ret is None:
+        if ret is None: 
             return None
         return ret[0]
 
@@ -66,7 +66,7 @@ class DataBaseTelegram:
         cursor = self.data_base.cursor()
 
         cursor.execute("UPDATE abitu "
-                       "set STATUS = %(status)s"
+                       "set STATUS = %(status)s "
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id, 'status': status})
 
@@ -76,7 +76,7 @@ class DataBaseTelegram:
         cursor = self.data_base.cursor()
 
         cursor.execute("UPDATE abitu "
-                       "set EMAIL = %(email)s"
+                       "set EMAIL = %(email)s "
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id, 'email': email})
 
