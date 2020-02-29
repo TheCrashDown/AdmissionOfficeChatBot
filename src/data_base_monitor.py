@@ -52,10 +52,11 @@ class DataBaseMonitor:
                            "on abitu.email = ladder.email "
                            "WHERE user_id = %(user_id)s;",
                            {'user_id': chat_id})
-            if cursor.fetchone() is None:
+            ret = cursor.fetchone()
+            if ret is None:
                 return 0 # hui
             else:
-                return int(cursor.fetchone()[0])
+                return int(ret[0])
 
 
     def get_number_of_people_above_with_certificate(self, chat_id):
