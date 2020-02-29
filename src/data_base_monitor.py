@@ -45,6 +45,15 @@ class DataBaseMonitor:
                 return 5555
 
 
+    def get_summary(self, chat_id):
+        with self.data_base.cursor() as cursor:
+            cursor.execute("SELECT summary"
+                           "FROM ladder"
+                           "WHERE user_id = %(user_id)s);",
+                           {'user_id': chat_id})
+            return cursor.fetchone()[0]
+
+
     def get_number_of_people_above_with_certificate(self, chat_id):
 
         with self.data_base.cursor() as cursor:

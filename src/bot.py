@@ -61,7 +61,8 @@ def monitoring(chat_id):
     bot.send_message(chat_id, 'Текущее состояние таблицы таково:', reply_markup=keybord)
     # print some ladder
 
-    number_of_people = data_base_monitor.get_number_of_people()
+    your_summary = data_base_monitor.get_summary(chat_id)
+    number_of_people = data_base_monitor.number_of_people()
     above = data_base_monitor.get_number_of_people_above(chat_id)
     above_ = data_base_monitor.get_number_of_people_above_with_certificate(chat_id)
 
@@ -70,7 +71,7 @@ def monitoring(chat_id):
              Количество людей выше вас: {1}\n \
              Количество людей выше вас, подавших оригинал аттестата: {2}\n \
              Всего людей, подавших документы: {3}\n \
-             Проходной балл в прошлом году: 262".format(0, above, above_, number_of_people)
+             Проходной балл в прошлом году: 262".format(your_summary, above, above_, number_of_people)
 
     bot.send_message(message.chat.id, stats)
 
