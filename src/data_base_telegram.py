@@ -51,7 +51,7 @@ class DataBaseTelegram:
         cursor = self.data_base.cursor()
 
         cursor.execute("UPDATE abitu "
-                       "set STATUS = %s(status)"
+                       "set STATUS = %(status)s"
                        "where user_id = %(user_id)s",
                        {'user_id': chat_id, 'status': status})
 
