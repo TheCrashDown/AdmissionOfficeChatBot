@@ -74,6 +74,7 @@ def faq_question(message):
         bot.send_message(message.chat.id, 'Если вы не нашли нужный вам ответ, вы можете задать вопрос на <a href = "pk.mipt.ru/faq">сайте мфти</a>', parse_mode="HTML", reply_markup=keybord)
     except Exception:
         data_base_telegram.set_status(message.chat.id, "")
+        bot.send_message(message.chat.id, 'Если вы не нашли нужный вам ответ, вы можете задать вопрос на <a href = "pk.mipt.ru/faq">сайте мфти</a>', parse_mode="HTML", reply_markup=keybord)
 
 
 def monitoring(chat_id):
@@ -127,6 +128,7 @@ def set_mail(message):
         data_base_telegram.set_status(message.chat.id, "")
         monitoring(message.chat.id)
     except Exception:
+        bot.send_message(message.chat.id, "Пользователя с такой почтой не существует")
         data_base_telegram.set_status(message.chat.id, "")
 
 
