@@ -1,4 +1,4 @@
-import Corrector.corrector as corrector
+import src.Corrector.corrector as corrector
 
 
 def delete_noisy_words(text):
@@ -22,7 +22,7 @@ def get_answer(question):
     question = corrector.correct(question)
     question = delete_noisy_words(question)
 
-    from Stemmer.porter import Porter as porter
+    from src.Stemmer.porter import Porter as porter
     question_stemmed_list = [porter.stem(x) for x in question.split(" ") if x]
     print(question_stemmed_list)
 

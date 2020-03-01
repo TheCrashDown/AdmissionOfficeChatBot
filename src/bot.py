@@ -1,6 +1,6 @@
 import telebot
 import threading
-from faqer import get_answer
+from src.Utility.faqer import get_answer
 from src.data_base_telegram import DataBaseTelegram
 from src.data_base_monitor import DataBaseMonitor
 import csv
