@@ -15,4 +15,4 @@ def extractCleanCsvQA(src_path, dst_path):
 
 if __name__ == "__main__":
     parse()
-    extractCleanCsvQA("data/queries.csv", "~/Desktop/clean_qa.csv")
+    extractCleanCsvQA("data/queries.csv", "data/clean_qa.csv")

@@ -1,4 +1,4 @@
-import requests, sys
+import requests
 
 count = 0
 
@@ -6,7 +6,7 @@ def correct(text):
 
     url = "https://speller.yandex.net/services/spellservice.json/checkText?text="
 
-    h = 0#]
+    h = 0
 
     t = text.split(' ')
 
