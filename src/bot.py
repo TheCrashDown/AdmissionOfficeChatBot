@@ -60,7 +60,6 @@ def faq_message(message):
 
 @bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "FAQ")
 def faq_question(message):
-    message_to_send = "Sorry, error happened"
     with open("data/queries.csv") as f:
         f_csv = csv.reader(f, delimiter='\t')
         i = 0
