@@ -1,6 +1,7 @@
 import telebot
 import threading
-from src.Utility.faqer import get_answer
+import src.Utility.faqer as faqer
+import src.Utility.faqer_igor as faqer_igor
 from src.data_base_telegram import DataBaseTelegram
 from src.data_base_monitor import DataBaseMonitor
 import csv
@@ -65,9 +66,9 @@ def faq_question(message):
         with open("data/queries.csv") as f:
             f_csv = csv.reader(f, delimiter='\t')
             i = 0
-            needed_i = get_answer(message.text)
+            needed_i = faqer_igor.get_answer(message.text)
             for query in f_csv:
-                if i in needed_i:
+                if i == needed_i:
                     bot.send_message(message.chat.id, "Вопрос: " + str(query[0]) + "Ответ: " + str(query[1]), parse_mode="HTML", reply_markup=keybord)
                 i += 1
 

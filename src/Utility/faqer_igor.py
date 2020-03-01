@@ -1,7 +1,7 @@
-from Corrector import correct
+from src.Corrector import correct
 import pandas as pd
 from gensim.models import KeyedVectors, Word2Vec
-from Stemmer import Porter
+from src.Stemmer import Porter
 
 def delete_noisy_words(text, pathname):
     text = text.lower()
