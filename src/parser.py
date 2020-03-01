@@ -4,7 +4,7 @@ import time
 import csv
 import os
 import json
-from src.TF_IDF.tf_idf import get_tf_idf
+from src.TF_IDF.tf_idf import get_idf
 from src.Utility.extract_clean_csv import extractCleanCsvQA
 
 
@@ -78,8 +78,8 @@ def parse():
             f_csv.writerow(row)
 
     extractCleanCsvQA("data/queries.csv", "data/clean_qa.csv")
-    dict_tf_idf = get_tf_idf("data/clean_qa.csv")
-    load_dict = json.dumps(dict_tf_idf)
+    dict_idf = get_idf("data/clean_qa.csv")
+    load_dict = json.dumps(dict_idf)
 
     with open("data/tf_ids.py", "w") as f:
         f.write(load_dict)
