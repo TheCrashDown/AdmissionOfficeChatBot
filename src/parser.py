@@ -5,6 +5,7 @@ import csv
 import os
 import json
 from src.TF_IDF.tf_idf import get_tf_idf
+from src.Utility.extract_clean_csv import extractCleanCsvQA
 
 
 def parse_question_answer(qwa_parsed_list):
@@ -76,7 +77,8 @@ def parse():
         for row in qwa_parsed_list:
             f_csv.writerow(row)
 
-    dict_tf_idf = get_tf_idf("data/queries.csv")
+    extractCleanCsvQA("data/queries.csv", "data/clean_qa.csv")
+    dict_tf_idf = get_tf_idf("data/calean_qa.csv")
     load_dict = json.load(dict_tf_idf)
 
     with open("data/tf_ids.py", "w") as f:
