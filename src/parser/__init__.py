@@ -1,2 +1,2 @@
 from parser import *
-__all__ = ["parser"]
+__all__ = ["parse", "parse_faq", "parse_question_answer"]

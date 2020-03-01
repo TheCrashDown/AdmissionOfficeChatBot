@@ -1,6 +1,6 @@
 import pandas as pd
 import re
-from parser import parse
+from Parser import parse
 
 def getText(raw_html):
     cleantextre = re.compile('<.*?>')

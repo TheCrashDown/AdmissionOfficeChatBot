@@ -74,8 +74,10 @@ def parse():
         for row in qwa_parsed_list:
             f_csv.writerow(row)
 
+"""
 if not os.path.exists('data'):
     os.mkdir('data')
 
 if (not os.path.exists('data/queries.csv')) or ((time.time() - os.path.getmtime('data/queries.csv')) > 3600):
     parse()
+"""
