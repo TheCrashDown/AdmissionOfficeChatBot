@@ -78,7 +78,8 @@ def faq_question(message):
 def monitoring(chat_id):
     ladder, number = data_base_monitor.receive_ladder(chat_id)
 
-    str_to_send = 'Текущее состояние таблицы таково:\n<pre>\n.....................\n'
+    # str_to_send = 'Текущее состояние таблицы таково:\n<pre>\n.....................\n'
+    str_to_send = 'Текущее состояние таблицы таково:\n\n.....................\n'
 
     for row in ladder:
         #if row[0] == number:
@@ -92,8 +93,8 @@ def monitoring(chat_id):
         if row[0] == number:
             str_to_send += "</b>"
 
-
-    str_to_send += ".....................\n</pre>\n"
+    # str_to_send += ".....................\n</pre>\n"
+    str_to_send += ".....................\n\n"
 
     bot.send_message(chat_id, str_to_send, reply_markup=keybord, parse_mode='HTML')
 
