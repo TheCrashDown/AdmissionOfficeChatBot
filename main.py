@@ -1,6 +1,6 @@
+from src.parser import parse
 from src.bot import bot
 import time
-from src.parser import parse
 
 if __name__ == '__main__':
     while True:

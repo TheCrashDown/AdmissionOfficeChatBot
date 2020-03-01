@@ -18,7 +18,7 @@ def delete_noisy_words(text, pathname):
         text = text.replace(" {} ".format(odd_word), " ")
     return text
 
-df = pd.read_csv("res/clean_qa.csv", sep='\t')
+df = pd.read_csv("data/clean_qa.csv", sep='\t')
 
 noisy_words_filepath = "res/noisy_words.txt"
 sentences = [
@@ -28,7 +28,7 @@ sentences = [
 model = Word2Vec(sentences, size=100, batch_words=5, window=4, min_count=5)
 word_vectors = KeyedVectors.load("model/word2vec.model")
 
-vocab = word_vectors.vocab
+vocab = word_vectors.wv.vocab
 
 def preprocessQuery(sentence):
     """Splits sentence into words and intersects it with vocabulaty of the trained model"""

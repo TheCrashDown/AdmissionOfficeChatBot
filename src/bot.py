@@ -69,7 +69,9 @@ def faq_question(message):
             needed_i = faqer_igor.get_answer(message.text)
             for query in f_csv:
                 if i == needed_i:
-                    bot.send_message(message.chat.id, "Вопрос: " + str(query[0]) + "Ответ: " + str(query[1]), parse_mode="HTML", reply_markup=keybord)
+                    question = str(query[1])
+                    question = '.'.join((question.split('.'))[1:])
+                    bot.send_message(message.chat.id, "Вопрос: " + question + "\n\nОтвет: " + str(query[1]), parse_mode="HTML", reply_markup=keybord)
                 i += 1
 
         data_base_telegram.set_status(message.chat.id, "")
