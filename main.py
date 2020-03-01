@@ -1,10 +1,6 @@
+from src.bot import bot
 import time
-
-from sys import path
-path.append("./src")
-
-from Parser import parse
-from Corrector import correct
+from src.parser import parse
 
 if __name__ == '__main__':
     while True:

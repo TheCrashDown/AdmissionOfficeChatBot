@@ -67,12 +67,12 @@ def faq_question(message):
         needed_i = get_answer(message.text)
         for query in f_csv:
             if i == needed_i:
-                message_to_send = query[1]
+                bot.send_message(message.chat.id, "Вопрос: " + str(query[0]) + "Ответ: " + str(query[1]), parse_mode="HTML", reply_markup=keybord)
                 break
             i += 1
 
     data_base_telegram.set_status(message.chat.id, "")
-    bot.send_message(message.chat.id, message_to_send, parse_mode="HTML", reply_markup=keybord)
+    bot.send_message(message.chat.id, 'Если вы не нашли нужный вам ответ, вы можете задать вопрос на <a href = "pk.mipt.ru/faq">сайте мфти</a>', parse_mode="HTML", reply_markup=keybord)
 
 
 def monitoring(chat_id):
