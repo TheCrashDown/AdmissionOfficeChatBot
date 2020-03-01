@@ -84,6 +84,8 @@ def parse():
     with open("data/tf_ids.py", "w") as f:
         f.write(load_dict)
 
+    print("Parsing finished")
+
 
 if not os.path.exists('data'):
     os.mkdir('data')
