@@ -17,9 +17,9 @@ def delete_noisy_words(text, pathname):
 
 
 # return number in table
-def get_answer(question):
+def get_answer(question, filepath):
     question = correct(question)
-    question = delete_noisy_words(question, "res/noisy_words.txt")
+    question = delete_noisy_words(question, filepath)
 
     from Stemmer import Porter
     question_stemmed_list = [Porter.stem(x) for x in question.split(" ") if x]
