@@ -93,7 +93,7 @@ def monitoring(chat_id):
             str_to_send += "> "
         else:
             str_to_send += "  "
-        str_to_send += "{: >2} {: <12}{: <2}.{: <5}{}\n".format(row[0], row[1], row[2][0], row[3],
+        str_to_send += "{: >2} {: <12}{: <5}{}\n".format(row[0], row[1] + " " + row[2][0] + ".", row[3],
                                                                        "Оригинал" if row[4] else "Копия")
 
 
