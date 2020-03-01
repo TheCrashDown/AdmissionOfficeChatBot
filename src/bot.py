@@ -19,7 +19,8 @@ keybord.row("FAQ", "Monitoring")
 @bot.message_handler(commands=['start'])
 def start_message(message):
     data_base_telegram.add_user(message.chat.id)
-    bot.send_message(message.chat.id, 'Hello World', reply_markup=keybord)
+    with open("res/start_message.txt", "r") as f:
+        bot.send_message(message.chat.id, f.read())
 
 
 @bot.message_handler(commands=['help'])
