@@ -78,8 +78,8 @@ def parse():
             f_csv.writerow(row)
 
     extractCleanCsvQA("data/queries.csv", "data/clean_qa.csv")
-    dict_tf_idf = get_tf_idf("data/calean_qa.csv")
-    load_dict = json.load(dict_tf_idf)
+    dict_tf_idf = get_tf_idf("data/clean_qa.csv")
+    load_dict = json.dumps(dict_tf_idf)
 
     with open("data/tf_ids.py", "w") as f:
         f.write(load_dict)
