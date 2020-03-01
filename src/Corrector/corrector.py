@@ -1,16 +1,27 @@
-import requests
+import requests, sys
+
+count = 0
 
 def correct(text):
 
     url = "https://speller.yandex.net/services/spellservice.json/checkText?text="
 
-    req = url + str.replace(text.strip(), " ", "+")
+    h = 0#]
 
-    resp = requests.get(req).json()
+    t = text.split(' ')
 
     fixed = text
-    for err in resp:
-        fixed = str.replace(fixed, err["word"], err["s"][0])
+
+    while h <= len(t):
+        req = url + "+".join(t[h:(h + 100)])
+        h += 100
+
+        resp = requests.get(req)
+
+        resp = resp.json()
+
+        for err in resp:
+            fixed = str.replace(fixed, err["word"], err["s"][0])
 
     return fixed
 
