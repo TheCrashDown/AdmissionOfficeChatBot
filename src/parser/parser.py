@@ -4,7 +4,6 @@ import time
 import csv
 import os
 
-
 def parse_question_answer(qwa_parsed_list):
     html_query = requests.get("https://pk.mipt.ru/bachelor/question-answer/", verify=False)
 

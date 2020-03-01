@@ -1,6 +1,5 @@
 import pandas as pd
 import re
-from Parser import parse
 
 def getText(raw_html):
     cleantextre = re.compile('<.*?>')
@@ -14,6 +13,8 @@ def extractCleanCsvQA(src_path, dst_path):
     df["Answer"] = df["Answer"].apply(func=getText)
     df.to_csv(dst_path, sep='\t')
 
+"""
 if __name__ == "__main__":
     parse()
-    extractCleanCsvQA("data/queries.csv", "~/Desktop/clean_qa.csv")
+    extractCleanCsvQA("data/queries.csv", "data/clean_qa.csv")
+"""
