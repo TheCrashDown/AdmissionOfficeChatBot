@@ -84,10 +84,10 @@ def monitoring(chat_id):
     str_to_send = 'Текущее состояние таблицы таково:\n<pre>\n.....................\n'
 
     for row in ladder:
-        #if row[0] == number:
-        #    str_to_send += "> "
-        #else:
-        #    str_to_send += "  "
+        if row[0] == number:
+            str_to_send += "> "
+        else:
+            str_to_send += "  "
         str_to_send += "{: >2} {: <15}{: <5}{}\n".format(row[0], row[2] + " " + row[1][0] + ".", row[3],
                                                                        "Ориг." if row[4] else "Копия")
 
