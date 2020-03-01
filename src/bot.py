@@ -107,7 +107,7 @@ def monitoring(chat_id):
              "Количество людей выше вас: {1}\n"
              "Количество людей выше вас, подавших оригинал аттестата: {2}\n"
              "Всего людей, подавших документы: {3}\n"
-             "Проходной балл в прошлом году: 262").format(your_summary, above, above_, number_of_people)
+             "Число бюджетных мест в этом году: 95").format(your_summary, above, above_, number_of_people)
 
     bot.send_message(chat_id, stats)
 
