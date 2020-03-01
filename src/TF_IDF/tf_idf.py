@@ -19,7 +19,7 @@ def get_idf(csv_filename):
     sequence_count = df.shape[0]
     idf_counter = dict()
 
-    import src.faqer as faqer
+    import src.Utility.faqer as faqer
     idx = 0
     for row in df.iterrows():
         row = row[1]
