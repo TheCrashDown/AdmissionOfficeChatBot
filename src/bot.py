@@ -60,17 +60,20 @@ def faq_message(message):
 
 @bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "FAQ")
 def faq_question(message):
-    with open("data/queries.csv") as f:
-        f_csv = csv.reader(f, delimiter='\t')
-        i = 0
-        needed_i = get_answer(message.text)
-        for query in f_csv:
-            if i in needed_i:
-                bot.send_message(message.chat.id, "Вопрос: " + str(query[0]) + "Ответ: " + str(query[1]), parse_mode="HTML", reply_markup=keybord)
-            i += 1
+    try:
+        with open("data/queries.csv") as f:
+            f_csv = csv.reader(f, delimiter='\t')
+            i = 0
+            needed_i = get_answer(message.text)
+            for query in f_csv:
+                if i in needed_i:
+                    bot.send_message(message.chat.id, "Вопрос: " + str(query[0]) + "Ответ: " + str(query[1]), parse_mode="HTML", reply_markup=keybord)
+                i += 1
 
-    data_base_telegram.set_status(message.chat.id, "")
-    bot.send_message(message.chat.id, 'Если вы не нашли нужный вам ответ, вы можете задать вопрос на <a href = "pk.mipt.ru/faq">сайте мфти</a>', parse_mode="HTML", reply_markup=keybord)
+        data_base_telegram.set_status(message.chat.id, "")
+        bot.send_message(message.chat.id, 'Если вы не нашли нужный вам ответ, вы можете задать вопрос на <a href = "pk.mipt.ru/faq">сайте мфти</a>', parse_mode="HTML", reply_markup=keybord)
+    except Exception:
+        data_base_telegram.set_status(message.chat.id, "")
 
 
 def monitoring(chat_id):
@@ -117,11 +120,14 @@ def monitoring_message(message):
 
 @bot.message_handler(func=lambda message: data_base_telegram.get_status(message.chat.id) == "SEND_MAIL")
 def set_mail(message):
-    if data_base_telegram.set_email(message.chat.id, message.text):
-        bot.send_message(message.chat.id, "Пользователя с такой почтой не существует")
-        return
-    data_base_telegram.set_status(message.chat.id, "")
-    monitoring(message.chat.id)
+    try:
+        if data_base_telegram.set_email(message.chat.id, message.text):
+            bot.send_message(message.chat.id, "Пользователя с такой почтой не существует")
+            return
+        data_base_telegram.set_status(message.chat.id, "")
+        monitoring(message.chat.id)
+    except Exception:
+        data_base_telegram.set_status(message.chat.id, "")
 
 
 bot_thread = threading.Thread(target=bot.polling)
