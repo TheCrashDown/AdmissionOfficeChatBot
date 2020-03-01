@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import time
 import csv
 import os
+import json
+from src.TF_IDF.tf_idf import get_tf_idf
 
 
 def parse_question_answer(qwa_parsed_list):
@@ -73,6 +75,12 @@ def parse():
 
         for row in qwa_parsed_list:
             f_csv.writerow(row)
+
+    dict_tf_idf = get_tf_idf("data/queries.csv")
+    load_dict = json.load(dict_tf_idf)
+
+    with open("data/tf_ids.py", "w") as f:
+        f.write(load_dict)
 
 
 if not os.path.exists('data'):
