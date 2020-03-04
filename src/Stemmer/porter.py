@@ -1,3 +1,5 @@
+# this code was taken from gist.github.com/Kein1945/9111512
+
 import re
 
 class Porter:
