@@ -2,4 +2,10 @@
 
 Чат-бот для приемной комиссии МФТИ, сделанный командой pyTor4 в рамках [Хакатона ФЦК](https://pgenesis.ru/hackfck).
 
-[Презентация проекта](https://docs.google.com/presentation/d/1ZhYrrvcHH3ZGYJ8tWwPINY6OFtkAyqZ-reEhRgDPpcM/edit#slide=id.g7ed299a062_3_82)
+[**Презентация проекта**](https://docs.google.com/presentation/d/1ZhYrrvcHH3ZGYJ8tWwPINY6OFtkAyqZ-reEhRgDPpcM/edit#slide=id.g7ed299a062_3_82)
+
+## Основные функции
+
+* Парсинг FAQ сайта приемки, создание базы вопросы-звоните на ее основе.
+* При задании вопроса идет поиск похожего вопроса в базе и выдача ответа из нее.
+* Подкачка данных с базы данных приемной комиссии, мониторинг положения участника в таблице.
